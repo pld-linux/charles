@@ -1,9 +1,4 @@
-
-%include	/usr/lib/rpm/macros.java
-
 %define		_rel	1
-
-%define		rel	0.1
 %include	/usr/lib/rpm/macros.java
 Summary:	Web debugging proxy application
 Name:		charles
