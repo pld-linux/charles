@@ -1,4 +1,10 @@
-%define		_rel	1
+# I have no access to full version, so I'm packaging trial version only.
+# If you have full tarball, add with(out?)_trial bcond
+
+# Conditional build:
+%bcond_without	trial		# build from full tarball
+
+%define		rel	0.1
 %include	/usr/lib/rpm/macros.java
 Summary:	Web debugging proxy application
 Name:		charles
