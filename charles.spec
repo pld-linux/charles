@@ -1,4 +1,3 @@
-<<<<<<< charles.spec
 
 %include	/usr/lib/rpm/macros.java
 
