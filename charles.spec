@@ -1,19 +1,18 @@
-
-%include	/usr/lib/rpm/macros.java
-
-%define		_rel	0.1
-
 # I have no access to full version, so I'm packaging trial version only.
 # If you have full tarball, add with(out?)_trial bcond
-%define		with_trial 1
 
+# Conditional build:
+%bcond_without	trial		# build from full tarball
+
+%define		rel	0.1
+%include	/usr/lib/rpm/macros.java
 Summary:	Web debugging proxy application
 Name:		charles
 Version:	3.4.1
-Release:	%{_rel}%{?with_trial:trial}
+Release:	%{rel}%{?with_trial:trial}
 License:	Proprietary, not distributable
-Group:		Development/Languages/Java
-Source0:	%{name}.tar.gz
+Group:		Networking/Daemons
+Source0:	http://www.charlesproxy.com/assets/release/%{version}/%{name}.tar.gz
 # Source0-md5:	bcab2cd381d8f5ae9ffed08a0a89b76d
 NoSource:	0
 Source1:	%{name}.sh
@@ -25,6 +24,9 @@ Requires:	jpackage-utils
 Requires:	jre-X11
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# already stripped
+%define		_enable_debug_packages	0
 
 %description
 Charles is an HTTP proxy / HTTP monitor / Reverse Proxy that enables a
@@ -38,16 +40,16 @@ the HTTP headers (which contain the cookies and caching information).
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_javadir}/%{name},%{_libdir}/%{name},%{_bindir}}
-
-cp -a lib/*jar $RPM_BUILD_ROOT%{_javadir}/%{name}
-cp -a lib/*so $RPM_BUILD_ROOT%{_libdir}/%{name}
-cp -a %{SOURCE1} $RPM_BUILD_ROOT/%{_bindir}/%{name}
+cp -a lib/*.jar $RPM_BUILD_ROOT%{_javadir}/%{name}
+install -p lib/*.so $RPM_BUILD_ROOT%{_libdir}/%{name}
+install -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_javadir}/%{name}
-%{_libdir}/%{name}
 %attr(755,root,root) %{_bindir}/%{name}
+%{_javadir}/%{name}
+%dir %{_libdir}/%{name}
+%attr(755,root,root) %{_libdir}/%{name}/libjdic.so
