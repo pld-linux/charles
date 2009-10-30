@@ -9,7 +9,7 @@
 Summary:	Web debugging proxy application
 Name:		charles
 Version:	3.4.1
-Release:	%{_rel}
+Release:	%{rel}
 License:	Proprietary, not distributable
 Group:		Networking/Daemons
 Source0:	http://www.charlesproxy.com/assets/release/%{version}/charles.tar.gz
