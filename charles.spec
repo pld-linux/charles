@@ -10,7 +10,7 @@
 Summary:	Web debugging proxy application
 Name:		charles
 Version:	3.4.1
-Release:	0.1%{?with_trial:trial}
+Release:	%{_rel}%{?with_trial:trial}
 License:	Proprietary, not distributable
 Group:		Development/Languages/Java
 Source0:	%{name}.tar.gz
