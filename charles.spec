@@ -8,12 +8,12 @@
 %include	/usr/lib/rpm/macros.java
 Summary:	Web debugging proxy application
 Name:		charles
-Version:	3.4.1
+Version:	3.5.1
 Release:	%{rel}
 License:	Proprietary, not distributable
 Group:		Networking/Daemons
 Source0:	http://www.charlesproxy.com/assets/release/%{version}/charles.tar.gz
-# NoSource0-md5:	bcab2cd381d8f5ae9ffed08a0a89b76d
+# NoSource0-md5:	1a21214d16f017318be061df061e6b8b
 NoSource:	0
 Source1:	%{name}.sh
 URL:		http://www.charlesproxy.com/
