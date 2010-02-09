@@ -17,7 +17,6 @@ Source0:	http://www.charlesproxy.com/assets/release/%{version}/charles.tar.gz
 NoSource:	0
 Source1:	%{name}.sh
 URL:		http://www.charlesproxy.com/
-BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	jpackage-utils
