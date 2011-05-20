@@ -1,12 +1,10 @@
 # I have no access to full version, so I'm packaging trial version only.
 # If you have full tarball, add with(out?)_trial bcond
-# TODO:
-# - activation.jar link becames invalid if BR jdk and runtime jdk are different as it linked from jvm dir
 
 # Conditional build:
 %bcond_without	trial		# build from full tarball
 
-%define		rel	0.2
+%define		rel	0.3
 %include	/usr/lib/rpm/macros.java
 Summary:	Web debugging proxy application
 Name:		charles
@@ -19,9 +17,6 @@ Source0:	http://www.charlesproxy.com/assets/release/%{version}/%{name}.tar.gz
 NoSource:	0
 Source1:	%{name}.sh
 URL:		http://www.charlesproxy.com/
-BuildRequires:	java(jaf)
-BuildRequires:	java-oro >= 1.4
-BuildRequires:	jpackage-utils
 BuildRequires:	rpm-javaprov
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	java(jaf)
@@ -45,12 +40,6 @@ the HTTP headers (which contain the cookies and caching information).
 
 rm lib/jakarta-oro-2.0.8.jar
 rm lib/activation.jar
-
-%build
-for jar in activation oro; do
-	jar=$(find-jar $jar)
-	ln -s $jar lib
-done
 
 %install
 rm -rf $RPM_BUILD_ROOT
