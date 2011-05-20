@@ -4,7 +4,7 @@
 # Conditional build:
 %bcond_without	trial		# build from full tarball
 
-%define		rel	0.3
+%define		rel	0.4
 %include	/usr/lib/rpm/macros.java
 Summary:	Web debugging proxy application
 Name:		charles
@@ -38,6 +38,11 @@ the HTTP headers (which contain the cookies and caching information).
 %prep
 %setup -q -n %{name}
 
+install -p %{SOURCE1} .
+%if "%{_lib}" != "lib"
+%{__sed} -i -e 's,/usr/lib,%{_libdir},' %{name}.sh
+%endif
+
 rm lib/jakarta-oro-2.0.8.jar
 rm lib/activation.jar
 
@@ -49,7 +54,7 @@ cp -a lib/*.jar $RPM_BUILD_ROOT%{_javadir}/%{name}
 %ifarch %{ix86}
 install -p lib/*.so $RPM_BUILD_ROOT%{_libdir}/%{name}
 %endif
-install -p %{SOURCE1} $RPM_BUILD_ROOT%{_bindir}/%{name}
+install -p %{name}.sh $RPM_BUILD_ROOT%{_bindir}/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
