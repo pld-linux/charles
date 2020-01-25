@@ -5,7 +5,6 @@
 %bcond_without	trial		# build from full tarball
 
 %define		rel	0.4
-%include	/usr/lib/rpm/macros.java
 Summary:	Web debugging proxy application
 Name:		charles
 Version:	3.5.2
